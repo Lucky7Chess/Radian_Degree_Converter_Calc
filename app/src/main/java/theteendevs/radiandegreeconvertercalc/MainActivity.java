@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
         button1.setOnClickListener(new View.OnClickListener() {//clear button
             @Override
             public void onClick(View view) {
-            editText1.setText("");
+            editText1.setText("a");
             editText2.setText("");
             editText3.setText("");
             }
