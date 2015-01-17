@@ -4,7 +4,9 @@ import android.app.ActionBar;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +20,7 @@ import android.widget.EditText;
 public class MainActivity extends ActionBarActivity {
 
 
-    protected void onCreate(Bundle savedInstanceState) {
+   protected void onCreate(Bundle savedInstanceState) {
 
 
         super.onCreate(savedInstanceState);
@@ -27,8 +29,10 @@ public class MainActivity extends ActionBarActivity {
         final EditText editText1=(EditText) findViewById(R.id.editText1);
         final EditText editText2=(EditText) findViewById(R.id.editText2);
         final EditText editText3=(EditText) findViewById(R.id.editText3);
-        Button button1=(Button) findViewById(R.id.button1);
-        Button button2=(Button) findViewById(R.id.button2);
+        final Button button1=(Button) findViewById(R.id.button1);
+        final Button button2=(Button) findViewById(R.id.button2);
+
+
 
 
 
@@ -43,12 +47,44 @@ public class MainActivity extends ActionBarActivity {
         });
 
 
-        button2.setOnClickListener(new View.OnClickListener() {
+
+        editText1.addTextChangedListener(new TextWatcher() {//listen for when textin textbox1 changed
             @Override
-            public void onClick(View view) {
-                TextUtils.isEmpty(editText1.getText());
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+ /*              if (TextUtils.isEmpty(editText1.getText())){//if its empty
+
+                   editText2.setFocusable(true);
+                   editText3.setFocusable(true);
+               }
+                else{*/
+                if(editText1.getText()!=null){
+                   float number11 =Float.valueOf(editText1.getText().toString());
+                   float calcNumber11=number11/180;
+                   float calcNumber12= (float) (calcNumber11*3.14);
+                   String output11=Float.toString(calcNumber11);
+                   String output12=Float.toString(calcNumber12);
+                   editText2.setText(output11);
+                   editText3.setText(output12);}
+            //       editText2.setFocusable(false);
+             //      editText3.setFocusable(false);
+             //  }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
+
+
+
+
+
 
 
 
@@ -81,4 +117,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     }
+
+
 
